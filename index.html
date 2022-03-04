@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Hva skal vi ha til lunsj?</title>
+    <style>
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        section {
+            display: flex;
+            flex-flow: column wrap;
+            align-items: center;
+        }
+        p {
+            max-width: 250px;
+        }
+    </style>
+  </head>
+  <body>
+      <h1>Stange</h1>
+      <section>
+          <img id="food-img" src="https://images.deliveryhero.io/image/fd-no/Products/2339.jpeg" alt="pulled-chicken-sandwich" width="200px">
+          <h2 id="food-name">Pulled Chicken Sandwich</h2>
+          <p id="food-desc">Ølbrød fylt med pulled chicken, lettsyltet kål, syltet løk, aioli og crunch som er en blanding av knust chips, sprøstekt løk og cayennepeppe.</p>
+      </section>
+      <button onclick="getRandomFood()">Shuffle</button>
+      
+      <script>
+          const foodImg = document.querySelector("#food-img");
+          const foodName = document.querySelector("#food-name");
+          const foodDesc = document.querySelector("#food-desc");
+
+          const foodMenu = [
+              {
+                  image: "https://images.deliveryhero.io/image/fd-no/Products/2339.jpeg",
+                  name: "Pulled Chicken Sandwich",
+                  desc: "Ølbrød fylt med pulled chicken, lettsyltet kål, syltet løk, aioli og crunch som er en blanding av knust chips, sprøstekt løk og cayennepeppe."
+              },
+              {
+                  image: "https://images.deliveryhero.io/image/fd-no/Products/2338.jpeg",
+                  name: "Kyllingburger",
+                  desc: "Ølbrød fylt med utbenet kyllinglår, lettsyltet kål, syltet løk, aioli, BBQ-saus og crunch som er en blanding av knust chips, sprøstekt løk og cayennepepper."
+              },
+              {
+                  image: "https://images.deliveryhero.io/image/fd-no/LH/n5dy-hero.jpg",
+                  name: "Kyllinglår",
+                  desc: "Kyllinglår fra Stange kylling servert med husets friske potetsalat."
+              },
+          ]
+
+          let rand = Math.floor(Math.random() * 3);
+
+          function getRandomFood() {
+              let newRand = Math.floor(Math.random() * 3);
+              while (newRand == rand) {
+                  newRand = Math.floor(Math.random() * 3);
+              }
+              rand = newRand;
+              let chosenFood = foodMenu[rand];
+              foodImg.src = chosenFood.image;
+              foodName.innerHTML = chosenFood.name;
+              foodDesc.innerHTML = chosenFood.desc;
+          }
+
+          getRandomFood();
+      </script>
+  </body>
+</html>
